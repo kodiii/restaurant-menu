@@ -1,12 +1,8 @@
 import { menuArray } from './data.js';
 
 document.addEventListener("click",function(e){
-    //console.log(e.target.dataset.name)
-    if (e.target.dataset.addItemBtn) {
-        addItem(e.target.dataset.addItemBtn)
-        console.log(e.target.dataset.name)
-    } else {
-        console.log('wrong')
+    if (e.target.dataset.additembtn) {
+        addItem(e.target.dataset.additembtn)
     }
 })
 
@@ -23,7 +19,7 @@ function menuBoard() {
                     <p data-ingredients="${item.id}">${item.ingredients}</p>
                     <span class="price" data-price="${item.id}">$${item.price}</span>
                 </div>
-                <button class="add-item-btn" data-addItemBtn="${item.id}">+</button>
+                <button class="add-item-btn" data-additembtn="${item.id}">+</button>
             </div>
         `
     })
@@ -32,14 +28,22 @@ function menuBoard() {
 
 function addItem(itemMenuId) {
     const itemTargetIdObj = menuArray.filter(function (item) {
-        return item.id === itemMenuId
+        return item.id === parseInt(itemMenuId)
+        //console.log(item.id, item.name, item.ingredients)
     })[0]
     console.log(itemTargetIdObj)
+    let cartItemsObj = [{
+        name: '',
+        price: 0
+    }]
+
+    /*cartItemsObj.name.push(itemTargetIdObj.name)
+    console.log(cartItemsObj)*/
 }
 
 //render menu items
 function render() {
-    document.getElementById("feed").innerHTML = menuBoard()
+    document.getElementById("menuFeed").innerHTML = menuBoard()
 }
 
 render()
