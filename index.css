@@ -60,14 +60,13 @@ h3 {
     font-size: 78px;
 }
 
-#add-item-btn {
+.add-item-btn {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     font-family: 'Inter', sans-serif;;
     font-weight: 200;
     font-size: 32px;
-    line-height: 24px;
     text-align: center;
     color: #3C3C3C;
     background-color: white;
