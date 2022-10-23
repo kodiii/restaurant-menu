@@ -35,13 +35,25 @@ h3 {
     font-size: 28px;
 }
 
-.menu-items {
+.container {
+
+}
+
+.menuFeed {
     width: 600px;
+}
+
+.menu-items {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 45px;
     border-bottom: 1px solid #D2D2D2;
+}
+
+.menuCart {
+    width: 600px;
+    padding: 45px;
 }
 
 .item-data {
