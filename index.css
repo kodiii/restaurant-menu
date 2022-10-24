@@ -30,13 +30,25 @@ header {
 h1 {
     font-size: 40px;
 }
-
-h3 {
+h2 {
+    text-align: center;
+    font-style: normal;
+    font-weight: 400;
     font-size: 28px;
 }
 
-.container {
+p {
+    color: #bbbbbb;
+    font-size: 16px;
+}
 
+span {
+    font-weight: 400;
+    font-size: 28px;
+}
+
+.price {
+    font-size: 20px;
 }
 
 .menuFeed {
@@ -51,21 +63,12 @@ h3 {
     border-bottom: 1px solid #D2D2D2;
 }
 
-.menuCart {
-    width: 600px;
-    padding: 45px;
-}
-
 .item-data {
     width: 65%;
 }
 
 .item-data p {
-    color: #bbbbbb;
-    font-size: 16px;
-    line-height: 24px;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    margin: 10px 0 10px 0;
 }
 
 .emoji {
@@ -82,4 +85,28 @@ h3 {
     color: #3C3C3C;
     background-color: white;
     border: 1px solid #DEDEDE;
+}
+
+.menuCart {
+    display: none;
+    padding: 45px;
+}
+
+.cart-items {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0 15px 0;
+}
+
+.items-name-col {
+    display: flex;
+    gap: 10px;
+}
+
+#total-items-price {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 28px;
+    padding-top: 14px;
+    border-top: 2px solid #393333;
 }
