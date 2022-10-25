@@ -5,9 +5,10 @@ let cartArray = []
 document.addEventListener("click",function(e){
     if (e.target.dataset.additembtn) {
         addItemToCart(e.target.dataset.additembtn)
+        renderCart()
     } else if (e.target.dataset.remove) {
-        console.log(e.target.dataset.remove)
-        //deleteItem(e.target.dataset.remove)
+        deleteItem(e.target.dataset.remove)
+        console.log(cartArray)
     }
 })
 
@@ -38,7 +39,9 @@ function addItemToCart(itemMenuId) {
     })[0]
 
     cartArray.push(itemTargetIdObj)
-
+}
+//handle render cart
+function  renderCart() {
     let cartMenu = ''
     let totalCart = 0
 
@@ -48,7 +51,7 @@ function addItemToCart(itemMenuId) {
                     <div class="cart-items">
                         <div class="items-name-col">
                             <span class="item-name">${item.name}</span>
-                            <button data-remove="${item.id}">remove</button>
+                            <button class="remove-item-btn" data-remove="${item.id}">remove</button>
                         </div>
                         <div class="items-price-col">
                             <span class="price">$${item.price}</span>
@@ -65,7 +68,7 @@ function addItemToCart(itemMenuId) {
         <span class="price">$${totalCart}</span>
     `
     document.getElementById("menuCart").style.display = 'block'
-    //console.log(cartMenu)
+    //console.log(cartArray)
 }
 
 //render menu items
@@ -74,12 +77,12 @@ function renderMenuBoard() {
 }
 
 function deleteItem(removeItem) {
-    cartArray.forEach(function(item) {
-        if(removeItem === item.id) {
-            console.log("done")
-        }
+    const removeItemObj = cartArray.filter(function (item) {
+        return item.id === parseInt(removeItem)
     })
-    console.log(cartArray)
+    removeItemObj.shift()
+    //cartArray.shift()
+    renderCart()
 }
 
 renderMenuBoard()
