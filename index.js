@@ -1,5 +1,9 @@
 import { menuArray } from './data.js'
 
+const menuCart = document.getElementById("menu-cart")
+const modalContainer = document.getElementById("modal-container")
+const inputForm = document.getElementsByTagName('input')
+
 let cartArray = []
 
 document.addEventListener("click",function(e){
@@ -8,9 +12,12 @@ document.addEventListener("click",function(e){
         renderCart()
     } else if (e.target.dataset.remove) {
         deleteItem(e.target.dataset.remove)
-        console.log(cartArray)
+    } else if (e.target.dataset.orderbtn) {
+        modalContainer.style.display = 'block'
     }
 })
+
+
 
 //function to populate the menu items
 function menuBoard() {
@@ -40,6 +47,7 @@ function addItemToCart(itemMenuId) {
 
     cartArray.push(itemTargetIdObj)
 }
+
 //handle render cart
 function  renderCart() {
     let cartMenu = ''
@@ -51,7 +59,7 @@ function  renderCart() {
                     <div class="cart-items">
                         <div class="items-name-col">
                             <span class="item-name">${item.name}</span>
-                            <button class="remove-item-btn" data-remove="${item.id}">remove</button>
+                            <p class="remove-item-btn" data-remove="${item.id}">remove</p>
                         </div>
                         <div class="items-price-col">
                             <span class="price">$${item.price}</span>
@@ -67,8 +75,7 @@ function  renderCart() {
         <span class="total-price">Total:</span>
         <span class="price">$${totalCart}</span>
     `
-    document.getElementById("menuCart").style.display = 'block'
-    //console.log(cartArray)
+    menuCart.style.display = 'block'
 }
 
 //render menu items
@@ -76,13 +83,22 @@ function renderMenuBoard() {
     document.getElementById("menuFeed").innerHTML = menuBoard()
 }
 
-function deleteItem(removeItem) {
-    const removeItemObj = cartArray.filter(function (item) {
-        return item.id === parseInt(removeItem)
+//remove item from cart
+function deleteItem(removeItemId) {
+    cartArray = cartArray.filter(function (item) {
+        return item.id !== parseInt(removeItemId)
     })
-    removeItemObj.shift()
-    //cartArray.shift()
     renderCart()
+}
+
+function handleOrderBtn(e) {
+    e.preventDefault()
+    if (inputForm.value) {
+        menuCart.style.display = 'none'
+        document.getElementById("order-message").style.display = 'block'
+    } else {
+        alert("Please fill all the fields")
+    }
 }
 
 renderMenuBoard()

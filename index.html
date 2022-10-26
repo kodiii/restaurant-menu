@@ -15,14 +15,27 @@
                     <span>The best burgers and pizzas in town.</span>
                 </div>
             </header>
+            <div id="modal-container">
+                <h2>Enter card details</h2>
+                <form>
+                    <input type="text" placeholder="Enter your name" aria-label="Enter your name" required>
+                    <input type="number" placeholder="Enter card number" aria-label="Enter card number" required>
+                    <input type="number" placeholder="Enter cvv" maxlength="4" aria-label="Enter cvv" required>
+                    <button id="pay-btn" type="submit" data-submitbtn="submit-btn">Pay</button>
+                </form>
+            </div>
             <div class="menuFeed" id="menuFeed">
                 <!--render items menu goes here-->
             </div>
-            <div class="menuCart" id="menuCart">
-                <h2>Your order</h2>
+            <div id="order-message">
+                <p>Thanks, James! Your order is on its way!</p>
+            </div>
+            <div class="menu-cart" id="menu-cart">
+                <h3>Your order</h3>
                 <!--render cart goes here-->
                 <div id="table-items"></div>
                 <div id="total-items-price"></div>
+                <button id="complete-order-btn" data-orderbtn="order-btn">Complete order</button>
             </div>
         </div>
     <script src="index.js" type="module"></script>
