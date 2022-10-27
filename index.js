@@ -2,11 +2,15 @@ import { menuArray } from './data.js'
 
 const menuCart = document.getElementById("menu-cart")
 const modalContainer = document.getElementById("modal-container")
-const inputForm = document.getElementsByTagName('input')
-
+const cardDetailsForm = document.getElementById("card-details")
+const inputName = document.getElementsByTagName('name')
+const inputCardNr = document.getElementsByTagName('card-number')
+const inputCardCvv = document.getElementsByTagName('card-cvv')
+const payBtn = document.getElementById("pay-btn")
 let cartArray = []
+//console.log(inputForm.valueOf())
 
-document.addEventListener("click",function(e){
+document.addEventListener("click", function(e){
     if (e.target.dataset.additembtn) {
         addItemToCart(e.target.dataset.additembtn)
         renderCart()
@@ -16,8 +20,6 @@ document.addEventListener("click",function(e){
         modalContainer.style.display = 'block'
     }
 })
-
-
 
 //function to populate the menu items
 function menuBoard() {
@@ -39,7 +41,12 @@ function menuBoard() {
     return menuItems
 }
 
-//handle add item to cart click and render it
+//render menu board items
+function renderMenuBoard() {
+    document.getElementById("menu-feed").innerHTML = menuBoard()
+}
+
+//handle add item to cart click
 function addItemToCart(itemMenuId) {
     const itemTargetIdObj = menuArray.filter(function (item) {
         return item.id === parseInt(itemMenuId)
@@ -78,11 +85,6 @@ function  renderCart() {
     menuCart.style.display = 'block'
 }
 
-//render menu items
-function renderMenuBoard() {
-    document.getElementById("menuFeed").innerHTML = menuBoard()
-}
-
 //remove item from cart
 function deleteItem(removeItemId) {
     cartArray = cartArray.filter(function (item) {
@@ -91,15 +93,23 @@ function deleteItem(removeItemId) {
     renderCart()
 }
 
-function handleOrderBtn(e) {
-    e.preventDefault()
-    if (inputForm.value) {
-        menuCart.style.display = 'none'
-        document.getElementById("order-message").style.display = 'block'
-    } else {
-        alert("Please fill all the fields")
-    }
-}
+cardDetailsForm.addEventListener("submit", handlePayBtn)
 
+function handlePayBtn(e) {
+    e.preventDefault()
+
+    const cardDetailsData = new FormData(cardDetailsForm)
+    const name = cardDetailsData.get("name")
+    const cardNr = cardDetailsData.get("cardNumber")
+    const cardNrCvv = cardDetailsData.get("cardCvv")
+
+    setTimeout(function (){
+        menuCart.style.display = 'none'
+        modalContainer.style.display = 'none'
+        document.getElementById("order-message").style.display = 'block'
+
+    }, 3000)
+        console.log(name, cardNr, cardNrCvv)
+}
 renderMenuBoard()
 

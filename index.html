@@ -17,14 +17,14 @@
             </header>
             <div id="modal-container">
                 <h2>Enter card details</h2>
-                <form>
-                    <input type="text" placeholder="Enter your name" aria-label="Enter your name" required>
-                    <input type="number" placeholder="Enter card number" aria-label="Enter card number" required>
-                    <input type="number" placeholder="Enter cvv" maxlength="4" aria-label="Enter cvv" required>
-                    <button id="pay-btn" type="submit" data-submitbtn="submit-btn">Pay</button>
+                <form id="card-details">
+                    <input type="text" name="name"  id="name" placeholder="Enter your name" aria-label="Enter your name" required>
+                    <input type="number" name="cardNumber" id="card-number" placeholder="Enter card number" aria-label="Enter card number" required>
+                    <input type="number" name="cardCvv" id="card-cvv" placeholder="Enter cvv" aria-label="Enter cvv" required>
+                    <button type="submit" id="pay-btn">Pay</button>
                 </form>
             </div>
-            <div class="menuFeed" id="menuFeed">
+            <div class="menu-feed" id="menu-feed">
                 <!--render items menu goes here-->
             </div>
             <div id="order-message">
