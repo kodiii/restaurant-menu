@@ -46,7 +46,7 @@ function renderMenuBoard() {
 
 //handle add item to cart click
 function addItemToCart(itemMenuId) {
-    const itemTargetIdObj = menuArray.filter(function (item) {
+    const itemTargetIdObj = menuArray.filter(item => {
         return item.id === parseInt(itemMenuId)
     })[0]
 
@@ -55,11 +55,11 @@ function addItemToCart(itemMenuId) {
 
 //handle render cart
 function  renderCart() {
-    let cartMenu = ''
-    let totalCart = 0
+    let cart = ''
+    let subTotal = 0
 
     cartArray.forEach(function(item) {
-        cartMenu += `
+        cart += `
                 <div class="container-cart">
                     <div class="cart-items">
                         <div class="items-name-col">
@@ -72,15 +72,26 @@ function  renderCart() {
                     </div>
                 </div>
             `
-        totalCart += item.price
+        subTotal += item.price
     });
 
-    document.getElementById("table-items").innerHTML = cartMenu
+    let fullTotalCart = subTotal
+
+    //check if the following items are on the cart and if so apply discount
+    const item1 = cartArray.includes(cartArray.find(item => item.name === "Pizza"))
+    const item2 = cartArray.includes(cartArray.find(item => item.name === "Beer"))
+
+    if(item1 && item2){
+        fullTotalCart = subTotal / 1.05
+    }
+    //render the HTML
+    document.getElementById("table-items").innerHTML = cart
     document.getElementById("total-items-price").innerHTML = `
         <span class="total-price">Total:</span>
-        <span class="price">$${totalCart}</span>
+        <span class="price">$${fullTotalCart.toFixed(2)}</span>
     `
     menuCart.style.display = 'block'
+
 }
 
 //remove item from cart
@@ -89,8 +100,6 @@ function deleteItem(removeItemId) {
         return item.id !== parseInt(removeItemId)
     })
     renderCart()
-console.log(cartArray.length)
-console.log(cartArray)
 }
 
 cardDetailsForm.addEventListener("submit", handlePayBtn)
@@ -103,7 +112,12 @@ function handlePayBtn(e) {
     const cardNr = cardDetailsData.get("cardNumber")
     const cardNrCvv = cardDetailsData.get("cardCvv")
 
-    if(inputName.value !== '' && inputCardNr.value !== '' && inputCardCvv.value !== '') {
+    if( inputName.value !== '' &&
+        inputCardNr.value !== '' &&
+        inputCardCvv.value !== ''&&
+        inputCardNr.value.length === 16 &&
+        inputCardCvv.value.length === 3
+    ) {
         setTimeout(function (){
             menuCart.style.display = 'none'
             modalContainer.style.display = 'none'
