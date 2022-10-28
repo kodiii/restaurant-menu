@@ -3,12 +3,10 @@ import { menuArray } from './data.js'
 const menuCart = document.getElementById("menu-cart")
 const modalContainer = document.getElementById("modal-container")
 const cardDetailsForm = document.getElementById("card-details")
-const inputName = document.getElementsByTagName('name')
-const inputCardNr = document.getElementsByTagName('card-number')
-const inputCardCvv = document.getElementsByTagName('card-cvv')
-const payBtn = document.getElementById("pay-btn")
+const inputName = document.getElementById('name')
+const inputCardNr = document.getElementById('card-number')
+const inputCardCvv = document.getElementById('card-cvv')
 let cartArray = []
-//console.log(inputForm.valueOf())
 
 document.addEventListener("click", function(e){
     if (e.target.dataset.additembtn) {
@@ -91,6 +89,8 @@ function deleteItem(removeItemId) {
         return item.id !== parseInt(removeItemId)
     })
     renderCart()
+console.log(cartArray.length)
+console.log(cartArray)
 }
 
 cardDetailsForm.addEventListener("submit", handlePayBtn)
@@ -103,13 +103,16 @@ function handlePayBtn(e) {
     const cardNr = cardDetailsData.get("cardNumber")
     const cardNrCvv = cardDetailsData.get("cardCvv")
 
-    setTimeout(function (){
-        menuCart.style.display = 'none'
-        modalContainer.style.display = 'none'
-        document.getElementById("order-message").style.display = 'block'
-
-    }, 3000)
-        console.log(name, cardNr, cardNrCvv)
+    if(inputName.value !== '' && inputCardNr.value !== '' && inputCardCvv.value !== '') {
+        setTimeout(function (){
+            menuCart.style.display = 'none'
+            modalContainer.style.display = 'none'
+            document.getElementById("order-message").style.display = 'block'
+            console.log(name, cardNr, cardNrCvv)
+        }, 1500)
+    } else {
+        alert("Fill all the fields")
+    }
 }
 renderMenuBoard()
 
