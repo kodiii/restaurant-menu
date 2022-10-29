@@ -40,14 +40,15 @@ h1 {
 h2 {
     text-align: center;
     margin-bottom: 47px;
-    font-size: 24px;
+    font-size: 28px;
     line-height: 31px;
 }
 
 h3 {
     text-align: center;
     font-weight: 400;
-    font-size: 28px;
+    font-size: 24px;
+    color: #065F46;
 }
 
 p {
@@ -127,6 +128,13 @@ span {
     border-top: 2px solid #393333;
 }
 
+#discount-msg {
+    display: none;
+    text-align: center;
+    color: indianred;
+    margin-top: 20px;
+}
+
 #complete-order-btn, #pay-btn {
     color: white;
     font-size: 16px;
@@ -183,15 +191,27 @@ input:last-of-type {
 }
 
 #order-message {
-    display: none;
+    display: block;
     background: #ECFDF5;
     border-radius: 3px;
+    padding: 48px 0;
 }
 
 #order-message p {
     text-align: center;
-    font-size: 32px;
+    font-size: 20px;
     line-height: 17px;
     color: #065F46;
-    padding: 52px 0;
+}
+
+.rate-system {
+    text-align: center;
+    margin: 20px 0 20px 0;
+}
+
+.fa-star:hover {
+    color: sandybrown;
+
+}.fa-star:active {
+    color: sandybrown;
 }

@@ -7,6 +7,8 @@ const inputName = document.getElementById('name')
 const inputCardNr = document.getElementById('card-number')
 const inputCardCvv = document.getElementById('card-cvv')
 let cartArray = []
+let subTotal
+let fullTotalCart
 
 document.addEventListener("click", function(e){
     if (e.target.dataset.additembtn) {
@@ -56,7 +58,7 @@ function addItemToCart(itemMenuId) {
 //handle render cart
 function  renderCart() {
     let cart = ''
-    let subTotal = 0
+    subTotal = 0
 
     cartArray.forEach(function(item) {
         cart += `
@@ -75,7 +77,7 @@ function  renderCart() {
         subTotal += item.price
     });
 
-    let fullTotalCart = subTotal
+    fullTotalCart = subTotal
 
     //check if the following items are on the cart and if so apply discount
     const item1 = cartArray.includes(cartArray.find(item => item.name === "Pizza"))
@@ -83,6 +85,7 @@ function  renderCart() {
 
     if(item1 && item2){
         fullTotalCart = subTotal / 1.05
+        document.getElementById("discount-msg").style.display = "block"
     }
     //render the HTML
     document.getElementById("table-items").innerHTML = cart
@@ -97,11 +100,18 @@ function  renderCart() {
 //remove item from cart
 function deleteItem(removeItemId) {
     cartArray = cartArray.filter(function (item) {
-        return item.id !== parseInt(removeItemId)
+        if (item.name === "Pizza" || item.name === "Beer") {
+            document.getElementById("discount-msg").style.display = "none"
+            fullTotalCart = subTotal
+            return item.id !== parseInt(removeItemId)
+        } else {
+            return item.id !== parseInt(removeItemId)
+        }
     })
     renderCart()
 }
 
+//handle payment service event
 cardDetailsForm.addEventListener("submit", handlePayBtn)
 
 function handlePayBtn(e) {
@@ -127,6 +137,10 @@ function handlePayBtn(e) {
     } else {
         alert("Fill all the fields")
     }
+}
+
+function ratingStar() {
+
 }
 renderMenuBoard()
 
