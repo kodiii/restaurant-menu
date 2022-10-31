@@ -1,5 +1,4 @@
 const ratingStars = [...document.getElementsByClassName("fa-star")]
-console.log(ratingStars.length)
 
 function executeRating(stars) {
     const starClassActive = "fa-solid fas fa-star"
