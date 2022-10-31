@@ -52,7 +52,11 @@ function addItemToCart(itemMenuId) {
         return item.id === parseInt(itemMenuId)
     })[0]
 
-    cartArray.push(itemTargetIdObj)
+    if (cartArray.length <= 2) {
+        cartArray.push(itemTargetIdObj)
+    } else {
+        alert("Max items on cart reached.")
+    }
 }
 
 //handle render cart
@@ -139,8 +143,5 @@ function handlePayBtn(e) {
     }
 }
 
-function ratingStar() {
-
-}
 renderMenuBoard()
 

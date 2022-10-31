@@ -8,6 +8,7 @@ body {
     font-family: 'Smythe', cursive;
     font-size: 20px;
     line-height: 14px;
+    background-color: dimgray;
 }
 
 h2, .remove-item-btn, input,
@@ -17,10 +18,11 @@ h2, .remove-item-btn, input,
 }
 
 .container {
+    background-color: white;
     background-size: cover;
     width: 600px;
     margin: 0 auto;
-    box-shadow: 0 1px 10px #bbbbbb;
+    box-shadow: 0 1px 10px darkgrey;
 }
 
 header {
@@ -93,7 +95,6 @@ span {
     height: 50px;
     border-radius: 50%;
     font-family: 'Inter', sans-serif;
-    font-size: 30px;
     color: #3C3C3C;
     background-color: white;
     border: 1px solid #DEDEDE;
@@ -191,7 +192,7 @@ input:last-of-type {
 }
 
 #order-message {
-    display: block;
+    display: none;
     background: #ECFDF5;
     border-radius: 3px;
     padding: 48px 0;
@@ -204,14 +205,17 @@ input:last-of-type {
     color: #065F46;
 }
 
-.rate-system {
+.user-rate {
     text-align: center;
     margin: 20px 0 20px 0;
 }
 
-.fa-star:hover {
-    color: sandybrown;
-
-}.fa-star:active {
+.fas {
     color: sandybrown;
 }
+
+.fa-star:hover {
+
+    color: sandybrown;
+}
+
